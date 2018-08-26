@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      - mvn clean compile test
+  build:
+    commands:
+      - mvn package
+artifacts:
+  type: zip
+  files:
+    - appspec.yml
+    - template.yml
+    - scripts/*
+    - target/ROOT.war
